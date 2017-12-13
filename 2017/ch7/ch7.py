@@ -28,13 +28,11 @@ with open('input.txt', 'r') as f:
   
   for l in f :
     l = l.split()
-    s = "".join(l[3:])
+    p, s = l[0], "".join(l[3:])
     
-    if s == '' : continue
-
-    candidates.add(l[0])
-    
-    children |= set(s.split(","))
+    if s != '' :
+      candidates.add(p)
+      children |= set(s.split(","))
    
   print((candidates - children).pop())
 
