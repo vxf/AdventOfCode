@@ -1,4 +1,4 @@
--module(ch6).
+-module(ch6_2).
 -export([main/0, main/1]).
 
 dist(M) ->
@@ -17,15 +17,24 @@ dist([H | T], P, Max, L, C) ->
   [H +     (Max div L) | dist(T, P, Max, L, C+1)].
 
 solve(M) ->
-  solve([M], false).
+  solve([M], {-1, false}).
 
-solve(T, true) ->
-  length(T) - 1;
-solve([M | T], false) ->
+solve(_, {P, true}) ->
+  P + 1;
+solve([M | T], {_, false}) ->
   N = dist(M),
   % io:write(N),
   % io:fwrite("~n"),
-  solve([N | [M | T]], lists:member(N, [M | T])).
+  solve([N | [M | T]], index(N, [M | T])).
+
+index(E, L) ->
+  index(E, L, 0).
+index(_, [], _) ->
+  {-1, false};
+index(E, [E | _], C) ->
+  {C, true};
+index(E, [_ | T], C) ->
+  index(E, T, C+1).
 
 %% max function that also returns the position on the list, 0-based
 maxp(M) ->
