@@ -3,6 +3,7 @@
 
 # vxf
 
+"""
 with open('input.txt', 'r') as f:
   d = {}
   for l in f :
@@ -12,15 +13,28 @@ with open('input.txt', 'r') as f:
     if s == '' : continue
     
     if not l[0] in d :
-        d[l[0]] = 0
+        d[l[0]] = True
     
     s = s.split(",")
 
     for c in s:
-      if c in d :
-        d[c] += 1
-      else :
-        d[c] = 1
+      d[c] = False
    
-  print(next(key for key, value in d.items() if value == 0))
+  print(next(key for key, value in d.items() if value))"""
+
+with open('input.txt', 'r') as f:
+  candidates = set()
+  children = set()
+  
+  for l in f :
+    l = l.split()
+    s = "".join(l[3:])
+    
+    if s == '' : continue
+
+    candidates.add(l[0])
+    
+    children |= set(s.split(","))
+   
+  print((candidates - children).pop())
 
