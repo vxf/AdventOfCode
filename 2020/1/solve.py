@@ -25,7 +25,7 @@ def part2(l):
 def solve():
     l = sorted(int(n) for n in input())
 
-    print(part1(l))
-    print(part2(l))
+    print(part1(list(l)))
+    print(part2(list(l)))
 
 solve()
