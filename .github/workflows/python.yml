@@ -6,9 +6,6 @@ on:
     paths:
       - '**/solve.py'
   pull_request:
-    branches: [ $default-branch ]
-    paths:
-      - '**/solve.py'
 
 env:
   CARGO_TERM_COLOR: always
