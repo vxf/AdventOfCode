@@ -1,4 +1,4 @@
-INPUT_FILE = 'input.txt'
+INPUT_FILE = '2021/2/input.txt'
 
 from functools import reduce
 from operator import add

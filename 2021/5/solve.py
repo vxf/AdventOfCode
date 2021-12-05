@@ -1,4 +1,4 @@
-INPUT_FILE = 'input.txt'
+INPUT_FILE = '2021/5/input.txt'
 
 from collections import Counter
 

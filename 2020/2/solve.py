@@ -1,4 +1,4 @@
-INPUT_FILE = 'input.txt'
+INPUT_FILE = '2020/2/input.txt'
 
 def input(name = INPUT_FILE):
     with open(name) as f:
