@@ -8,8 +8,6 @@
 #include <tuple>
 using namespace std;
 
-#define SUM(v) accumulate(v.begin(), v.end(), 0)
-
 enum PLAY {
     ROCK,
     PAPER,
