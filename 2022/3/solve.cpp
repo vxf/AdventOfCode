@@ -48,10 +48,35 @@ void part1(vector<string> input)
     cout << sum << endl;
 }
 
+void part2(vector<string> input)
+{
+    int sum = 0;
+
+    for (auto it = input.begin(); it < input.end(); it+=3)
+    {
+        auto a = *it;
+        auto b = *(it+1);
+        auto c = *(it+2);
+        string i, j;
+        sort(a.begin(), a.end());
+        sort(b.begin(), b.end());
+        sort(c.begin(), c.end());
+        set_intersection(a.begin(), a.end(),
+                            b.begin(), b.end(),
+                            back_inserter(i));
+        set_intersection(i.begin(), i.end(),
+                            c.begin(), c.end(),
+                            back_inserter(j));
+        sum += calc(j.back());
+    }
+    cout << sum << endl;
+}
+
 int main()
 {
     vector<string> input = readinput();
     part1(input);
+    part2(input);
 
     return 0;
 }
