@@ -1,0 +1,1 @@
+add_executable(aoc_2022_7_solve solve.cpp)
