@@ -9,7 +9,9 @@ main(_Args) ->
         {day2, "../test/data/day2_example.txt"},
         {day2, "../test/data/day2_input.txt"},
         {day3, "../test/data/day3_example.txt"},
-        {day3, "../test/data/day3_input.txt"}
+        {day3, "../test/data/day3_input.txt"},
+        {day4, "../test/data/day4_example.txt"},
+        {day4, "../test/data/day4_input.txt"}
     ],
     run_problems(Problems),
     erlang:halt(0).
