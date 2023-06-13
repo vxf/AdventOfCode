@@ -10,11 +10,11 @@ solve(InputFile) ->
     part2(Input).
 
 part1(Input) ->
-    X = lists:sum(lists:map(fun score/1, Input)),
+    X = lists:sum([score(P) || P <- Input]),
     io:fwrite("~w~n", [X]).
 
 part2(Input) ->
-    X = lists:sum(lists:map(fun(P) -> score(next_play(P)) end, Input)),
+    X = lists:sum([score(next_play(P)) || P <- Input]),
     io:fwrite("~w~n", [X]).
 
 parse_line(L) ->

@@ -5,24 +5,20 @@
 -export([part2/1]).
 
 solve(InputFile) ->
-    Input = lists:map(fun(I) -> sort(parse(I)) end, advent_file:readlines(InputFile)),
+    Input = [sort(parse(I)) || I <- advent_file:readlines(InputFile)],
     part1(Input),
     part2(Input).
 
 part1(Input) ->
-    X = lists:map(fun fully_contains/1, Input),
-    Y = length(lists:filter(fun(A) -> A end, X)),
-    io:fwrite("~w~n", [Y]).
+    X = lists:sum([1 || A <- Input, fully_contains(A)]),
+    io:fwrite("~w~n", [X]).
 
 part2(Input) ->
-    X = lists:map(fun overlaps/1, Input),
-    Y = length(lists:filter(fun(A) -> A end, X)),
-    io:fwrite("~w~n", [Y]).
+    X = lists:sum([1 || A <- Input, overlaps(A)]),
+    io:fwrite("~w~n", [X]).
 
 parse(L) ->
-    lists:map(fun(X) ->
-        lists:map(fun list_to_integer/1, string:split(X, "-"))
-    end, string:split(L, ",")).
+    [[list_to_integer(I) || I <- string:split(X, "-")] || X <- string:split(L, ",")].
 
 sort([[A, B], [C, D]]) when A > C; (A == C) and (D > B) ->
     [[C, D], [A, B]];

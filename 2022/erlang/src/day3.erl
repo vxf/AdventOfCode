@@ -10,23 +10,23 @@ solve(InputFile) ->
     part2(Input).
 
 part1(Input) ->
-    X = lists:sum(lists:map(fun score_intersect/1, lists:map(fun rucksack_split/1, Input))),
+    X = lists:sum([score_intersect(rucksack_split(R)) || R <- Input]),
     io:fwrite("~w~n", [X]).
 
 part2(Input) ->
-    X = lists:sum(lists:map(fun score_intersect/1, group(3, Input))),
+    X = lists:sum([score_intersect(G) || G <- group(3, Input)]),
     io:fwrite("~w~n", [X]).
 
 rucksack_split(Line) ->
     tuple_to_list(lists:split(string:length(Line) div 2, Line)).
 
 score_intersect(I) ->
-    score(set_first(sets:intersection(lists:map(fun sets:from_list/1, I)))).
+    score(set_first(sets:intersection([sets:from_list(L) || L <- I]))).
 
 set_first(Set) ->
     lists:last(sets:to_list(Set)).
 
-group(N, []) ->
+group(_, []) ->
     [];
 group(N, List) ->
     {H, T} = lists:split(N, List),
