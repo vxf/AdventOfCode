@@ -11,5 +11,5 @@ readlines(FileName) ->
 get_all_lines(Device) ->
     case io:get_line(Device, "") of
         eof  -> [];
-        Line -> [string:trim(Line) | get_all_lines(Device)]
+        Line -> [string:trim(Line, trailing, "\n") | get_all_lines(Device)]
     end.

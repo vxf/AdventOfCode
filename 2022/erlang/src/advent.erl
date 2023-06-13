@@ -3,22 +3,27 @@
 -export([main/1]).
 
 main(_Args) ->
-    Problems = [
-        {day1, "../test/data/day1_example.txt"},
-        {day1, "../test/data/day1_input.txt"},
-        {day2, "../test/data/day2_example.txt"},
-        {day2, "../test/data/day2_input.txt"},
-        {day3, "../test/data/day3_example.txt"},
-        {day3, "../test/data/day3_input.txt"},
-        {day4, "../test/data/day4_example.txt"},
-        {day4, "../test/data/day4_input.txt"}
+    Solutions = [
+        day1,
+        day2,
+        day3,
+        day4,
+        day5
     ],
-    run_problems(Problems),
+    run_problems(Solutions),
     erlang:halt(0).
 
-run_problems([{S,I}|R]) ->
-    io:fwrite("~s ~s~n", [S:module_info(module), I]),
-    S:solve(I),
+run_problems([S|R]) ->
+    ModuleName = atom_to_list(S:module_info(module)),
+
+    ExampleFile = string:replace("../test/data/{}_example.txt", "{}", ModuleName),
+    io:fwrite("~s ~s~n", [ModuleName, ExampleFile]),
+    S:solve(ExampleFile),
+
+    InputFile = string:replace("../test/data/{}_input.txt", "{}", ModuleName),
+    io:fwrite("~s ~s~n", [ModuleName, InputFile]),
+    S:solve(InputFile),
+
     run_problems(R);
 run_problems([]) ->
     ok.
