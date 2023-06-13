@@ -8,7 +8,8 @@ main(_Args) ->
         day2,
         day3,
         day4,
-        day5
+        day5,
+        day6
     ],
     run_problems(Solutions),
     erlang:halt(0).
